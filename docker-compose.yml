@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  drupal:
+    image: drupal
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/opt/drupal
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - drupal_network
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=drupal
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "3307:3306"
+    restart: always
+    networks:
+      - drupal_network
+networks:
+  drupal_network:
+    driver: bridge
