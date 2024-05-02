@@ -14,14 +14,14 @@ services:
       - drupal_network
 
   db:
-    image: mysql:5.7
+    image: mysql:latest
     environment:
-      - MYSQL_DATABASE=drupal
-      - MYSQL_USER=drupal
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
     ports:
-      - "3307:3306"
+      - "${DB_PORT}:3306"
     restart: always
     networks:
       - drupal_network
