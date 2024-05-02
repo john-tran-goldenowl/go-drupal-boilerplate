@@ -2,13 +2,11 @@ version: '3'
 
 services:
   drupal:
-    image: drupal
+    image: drupal:10-apache
     ports:
-      - "8080:80"
+      - 8080:80
     volumes:
-      - .:/opt/drupal
-    depends_on:
-      - db
+      - ./:/var/www/html
     restart: always
     networks:
       - drupal_network
